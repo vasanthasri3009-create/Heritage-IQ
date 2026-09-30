@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heritage IQ - Artifact Explorer</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5efe6;
+            margin: 0;
+        }
+
+        header {
+            background: #5d4037;
+            color: white;
+            padding: 18px;
+            text-align: center;
+        }
+
+        header a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .search {
+            text-align: center;
+            margin: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #aaa;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 3px 8px #ccc;
+        }
+
+        .card h2 {
+            color: #5d4037;
+        }
+
+        .ask {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 15px;
+            background: #5d4037;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .source {
+            font-size: 13px;
+            color: #666;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    🏺 Heritage IQ
+
+    <div style="margin-top:15px;">
+        <a href="/">🏠 Home</a>
+        <a href="/chat">🤖 AI Guide</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <h1>🏺 Artifact Explorer</h1>
+
+    <p style="text-align:center;">
+        Explore archaeological objects associated with Keeladi.
+    </p>
+
+    <div class="search">
+        <input type="text" placeholder="Search artifacts...">
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>🏺 Pottery</h2>
+            <p>
+                Pottery and pottery fragments are among the archaeological
+                materials found during excavations.
+            </p>
+
+            <div class="source">
+                📚 Source: Archaeological excavation records
+            </div>
+
+<a href="/chat?artifact=pottery" class="ask">🤖 Ask AI</a>
+        </div>
+
+
+        <div class="card">
+            <h2>⚒️ Iron Objects</h2>
+            <p>
+                Iron objects found at archaeological sites can provide
+                information about tools and technology.
+            </p>
+
+            <div class="source">
+                📚 Source: Archaeological evidence
+            </div>
+
+<a href="/chat?artifact=iron" class="ask">🤖 Ask AI</a>
+        </div>
+
+
+        <div class="card">
+            <h2>🪙 Coins</h2>
+            <p>
+                Coins and other small objects can help researchers study
+                trade and economic activity when securely identified.
+            </p>
+
+            <div class="source">
+                📚 Source: Archaeological evidence
+            </div>
+
+            <a href="/chat" class="ask">🤖 Ask AI</a>
+        </div>
+
+
+<a href="/chat?artifact=coins" class="ask">🤖 Ask AI</a>        <div class="card">
+            <h2>🧱 Brick Structures</h2>
+            <p>
+                Structural remains can provide clues about buildings,
+                construction and settlement patterns.
+            </p>
+
+            <div class="source">
+                📚 Source: Excavation evidence
+            </div>
+
+<a href="/chat?artifact=bricks" class="ask">🤖 Ask AI</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Heritage IQ - AI Guide</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5efe6;
+            margin: 0;
+        }
+
+        header {
+            background: #5d4037;
+            color: white;
+            padding: 18px;
+            text-align: center;
+        }
+
+        header a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* AI GUIDE */
+
+        #anime-guide {
+            text-align: center;
+            padding: 15px;
+        }
+
+        #anime-character {
+            width: 200px;
+            max-width: 55%;
+            display: block;
+            margin: auto;
+            animation: guideMove 1.5s infinite alternate;
+        }
+
+        @keyframes guideMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-7px);
+            }
+        }
+
+        #guide-status {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        /* CONTENT */
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .box h2 {
+            font-size: 26px;
+        }
+
+        .box p {
+            font-size: 19px;
+        }
+
+        /* SEARCH AREA */
+
+        .input-area {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #aaa;
+            font-size: 17px;
+        }
+
+        button {
+            padding: 15px 20px;
+            background: #5d4037;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #795548;
+        }
+
+        .mic-btn {
+            font-size: 21px;
+            padding: 13px 17px;
+        }
+
+        /* ANSWER */
+
+        #answer {
+            margin-top: 22px;
+            padding: 22px;
+            background: #fff8e1;
+            border-radius: 14px;
+            font-size: 20px;
+            line-height: 1.8;
+            min-height: 60px;
+        }
+
+        @media (max-width: 600px) {
+
+            .input-area {
+                gap: 6px;
+            }
+
+            input {
+                min-width: 0;
+            }
+
+            .mic-btn {
+                padding: 13px;
+            }
+
+            button {
+                padding: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    🏺 Heritage IQ<br>
+    🤖 AI Heritage Guide
+
+
+<div style="margin-top:15px; font-size:19px; font-weight:600;">
+
+    <a href="/">🏠 Home</a>
+
+    <a href="/chat">🤖 AI Guide</a>
+
+</div>
+</header>
+
+
+<!-- AI GUIDE -->
+
+<div id="anime-guide">
+
+    <img
+        id="anime-character"
+        src="{{ url_for('static', filename='guide.png') }}"
+        alt="AI Heritage Guide"
+    >
+
+    <h3>🤖 AI Heritage Guide</h3>
+
+    <p id="guide-status">
+        Vanakkam! 👋 Ask me about Keeladi.
+    </p>
+
+</div>
+
+
+<!-- CONTENT -->
+
+<div class="container">
+
+    <div class="box">
+
+        <h2>Ask the AI Guide 🏺</h2>
+
+        <p>
+            Type your question or use the microphone 🎙️
+        </p>
+
+
+        <!-- SEARCH + VOICE -->
+
+        <div class="input-area">
+
+            <input
+                id="question"
+                type="text"
+                placeholder="Ask your question..."
+            >
+
+            <button
+                class="mic-btn"
+                onclick="startVoice()"
+                title="Voice Input"
+            >
+                🎙️
+            </button>
+
+            <button onclick="askQuestion()">
+                Send
+            </button>
+
+        </div>
+
+
+        <!-- ANSWER -->
+
+        <div id="answer">
+            AI Guide: Your answer will appear here.
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* ASK QUESTION */
+
+async function askQuestion() {
+
+    const question =
+        document.getElementById("question").value;
+
+    if (question.trim() === "") {
+        return;
+    }
+
+
+    document.getElementById("guide-status").innerText =
+        "🤖 I'm thinking... 💭";
+
+
+    const response = await fetch("/ask", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            question: question
+        })
+
+    });
+
+
+    const data = await response.json();
+
+
+    document.getElementById("guide-status").innerText =
+        "🤖 AI Guide is ready!";
+
+
+    document.getElementById("answer").innerText =
+        "AI Guide: " + data.answer;
+
+
+    /* VOICE REPLY */
+
+    const speech =
+        new SpeechSynthesisUtterance(data.answer);
+
+    speech.lang = "en-IN";
+    speech.rate = 0.9;
+    speech.pitch = 1;
+
+    window.speechSynthesis.cancel();
+
+    window.speechSynthesis.speak(speech);
+
+}
+
+
+/* VOICE INPUT */
+
+function startVoice() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if (!SpeechRecognition) {
+
+        alert(
+            "Voice input is not supported in this browser."
+        );
+
+        return;
+    }
+
+
+    const recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang = "en-IN";
+
+    recognition.interimResults = false;
+
+    recognition.continuous = false;
+
+
+    recognition.start();
+
+
+    document.getElementById("guide-status").innerText =
+        "🎙️ Listening... Speak now";
+
+
+    recognition.onresult = function(event) {
+
+        const text =
+            event.results[0][0].transcript;
+
+
+        document.getElementById("question").value =
+            text;
+
+
+        document.getElementById("guide-status").innerText =
+            "🤖 Got it! Press Send.";
+
+    };
+
+
+    recognition.onerror = function() {
+
+        document.getElementById("guide-status").innerText =
+            "🎙️ Voice input stopped.";
+
+    };
+
+}
+
+
+/* ARTIFACT AUTO-FILL */
+
+window.onload = function() {
+
+    const artifact =
+        new URLSearchParams(window.location.search)
+        .get("artifact");
+
+
+    if (artifact) {
+
+        document.getElementById("question").value =
+            "Tell me about " + artifact;
+
+    }
+
+};
+
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+

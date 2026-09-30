@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heritage IQ - AI Guide</title>
+    <style>
+
+#anime-character {
+    display: block;
+    width: 220px;
+    max-width: 60%;
+    height: auto;
+    margin: 15px auto;
+    animation: guideMove 1.5s infinite alternate;
+}
+
+@keyframes guideMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-8px);
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5efe6;
+    margin: 0;
+}
+
+header {
+    background: #5d4037;
+    color: white;
+    padding: 18px;
+    text-align: center;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+}
+
+.guide {
+    text-align: center;
+}
+
+.box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+input {
+    width: 70%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+}
+
+button {
+    padding: 14px 20px;
+    background: #5d4037;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+#guide-status {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+#answer {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff8e1;
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 1.7;
+}
+
+@keyframes guideMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-8px);
+    }
+}
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5efe6;
+            margin: 0;
+        }
+
+        header {
+            background: #5d4037;
+            color: white;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .guide {
+            text-align: center;
+            font-size: 70px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 70%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #aaa;
+        }
+
+        button {
+            padding: 14px 20px;
+            background: #5d4037;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
+
+        #answer {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff8e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="anime-guide" style="text-align:center; margin:20px;">
+
+<div id="anime-character">
+
+<div id="anime-character">
+    <img src="{{ url_for('static', filename='guide.png') }}"
+         alt="AI Heritage Guide">
+</div>
+</div>
+    <h3>🤖 AI Heritage Guide</h3>
+
+    <p id="guide-status">
+        Vanakkam! 👋 Ask me about Keeladi.
+    </p>
+</div>
+<header>
+    🏺 Heritage IQ<br>
+    🤖 AI Heritage Guide
+
+    <div style="margin-top:15px;">
+        <a href="/" style="color:white; margin:10px;">🏠 Home</a>
+        <a href="/artifacts" style="color:white; margin:10px;">🏺 Artifacts</a>
+    </div>
+</header>
+<div class="container">
+
+    <div class="guide">🧑‍🎨</div>
+
+    <div class="box">
+        <h2>Vanakkam! 👋</h2>
+        <p>I'm your AI Heritage Guide.</p>
+        <p>Ask me anything about Keeladi!</p>
+
+        <input id="question" type="text"
+               placeholder="Ask your question...">
+
+        <button onclick="askQuestion()">Send</button>
+
+        <div id="answer">
+            AI Guide: Your answer will appear here.
+        </div>
+    </div>
+
+</div>
+
+<script>
+async function askQuestion() {
+
+    const artifact =
+        new URLSearchParams(window.location.search).get("artifact");
+
+    if (artifact) {
+        document.getElementById("question").value =
+            "Tell me about " + artifact;
+    }
+
+    const question =
+        document.getElementById("question").value;
+
+    if (question.trim() === "") {
+        return;
+    }
+
+    const response = await fetch("/ask", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            question: question
+        })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("guide-status").innerText =
+        "🤖 I'm thinking... 💭";
+
+    setTimeout(() => {
+        document.getElementById("guide-status").innerText =
+            "🤖 AI Guide: " + data.answer;
+    }, 800);
+
+    document.getElementById("answer").innerText =
+        "AI Guide: " + data.answer;
+
+    const speech =
+        new SpeechSynthesisUtterance(data.answer);
+
+    speech.lang = "en-IN";
+    speech.rate = 0.9;
+    speech.pitch = 1;
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(speech);
+
+}
+
+
+window.onload = function () {
+
+    const artifact =
+        new URLSearchParams(window.location.search).get("artifact");
+
+    if (artifact) {
+        document.getElementById("question").value =
+            "Tell me about " + artifact;
+    }
+};
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heritage IQ - Accessibility</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5efe6;
+            margin: 0;
+        }
+
+        header {
+            background: #5d4037;
+            color: white;
+            padding: 18px;
+            text-align: center;
+        }
+
+        header a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            margin: 18px 0;
+            border-radius: 15px;
+            box-shadow: 0 3px 8px #ccc;
+        }
+
+        button {
+            padding: 12px 18px;
+            margin: 6px;
+            border: none;
+            border-radius: 8px;
+            background: #5d4037;
+            color: white;
+            cursor: pointer;
+        }
+
+        #info {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f5efe6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    🏺 Heritage IQ
+
+    <div style="margin-top:15px;">
+        <a href="/">🏠 Home</a>
+        <a href="/artifacts">🏺 Artifacts</a>
+        <a href="/chat">🤖 AI Guide</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <h1>♿ Accessibility</h1>
+
+    <p>
+        Choose how you would like to explore.
+    </p>
+
+    <div class="card">
+
+        <h2>🌐 Language</h2>
+
+        <button onclick="showTamil()">தமிழ்</button>
+        <button onclick="showEnglish()">English</button>
+
+        <div id="info">
+            Select a language to view simple information.
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>📝 Easy Reading</h2>
+
+        <p>
+            Heritage IQ provides simple explanations about Keeladi
+            so that visitors can understand historical information easily.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>🔊 Audio-Friendly Information</h2>
+
+        <p>
+            Important information can also be provided through voice
+            to make the heritage experience easier to access.
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+function showTamil() {
+
+    document.getElementById("info").innerHTML =
+        "🏺 கீழடி தமிழ்நாட்டில் உள்ள முக்கியமான தொல்லியல் தளமாகும்.<br><br>" +
+        "பானை ஓடுகள், இரும்புப் பொருட்கள் மற்றும் பிற தொல்லியல் " +
+        "சான்றுகள் பழங்கால வாழ்க்கையைப் புரிந்துகொள்ள உதவுகின்றன.";
+}
+
+function showEnglish() {
+
+    document.getElementById("info").innerHTML =
+        "🏺 Keeladi is an important archaeological site in Tamil Nadu.<br><br>" +
+        "Pottery, iron objects and other archaeological evidence " +
+        "help us understand ancient life.";
+}
+
+</script>
+
+</body>
+</html>

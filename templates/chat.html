@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Heritage IQ | AI Guide</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f1e5;
+            color: #3d2b1f;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        header {
+            background: #5b3924;
+            color: white;
+            padding: 18px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        .title-section {
+            text-align: center;
+            padding: 28px 15px 10px;
+        }
+
+        .title-section h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #3d2b1f;
+        }
+
+        .title-section p {
+            color: #3d2b1f;
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            padding: 15px;
+        }
+
+
+        /* =========================
+           GUIDE CARD
+        ========================= */
+
+        .guide-card {
+            background: white;
+            border-radius: 18px;
+            padding: 20px;
+
+            box-shadow:
+                0 5px 20px rgba(61, 43, 31, 0.15);
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           GUIDE IMAGE AREA
+        ========================= */
+
+        .guide-wrapper {
+            position: relative;
+
+            width: min(100%, 430px);
+
+            aspect-ratio: 1024 / 1535;
+
+            margin: auto;
+
+            overflow: hidden;
+        }
+
+
+        /* STATIC GIRL */
+
+        #guide-image {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            z-index: 1;
+        }
+
+
+        /* =========================
+           ONLY MOUTH MOVES
+        ========================= */
+
+        #mouth-animation {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            z-index: 2;
+
+            display: none;
+
+            pointer-events: none;
+
+            /* MOUTH POSITION */
+            transform: translate(-11px, -9px);
+        }
+
+
+        /* =========================
+           QUESTION AREA
+        ========================= */
+
+        .question-box {
+            margin-top: 20px;
+        }
+
+        .question-box input {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 2px solid #8b572a;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            outline: none;
+
+            color: #3d2b1f;
+
+            background: white;
+        }
+
+        .question-box input:focus {
+            border-color: #5b3924;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .buttons {
+            display: flex;
+
+            gap: 10px;
+
+            justify-content: center;
+
+            margin-top: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 12px 20px;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            background: #8b572a;
+
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+
+        #voiceBtn {
+            background: #5b3924;
+        }
+
+        #voiceBtn.listening {
+            background: #8b572a;
+        }
+
+        #speakBtn {
+            background: #5b3924;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        #status {
+            text-align: center;
+
+            margin-top: 12px;
+
+            font-size: 14px;
+
+            color: #5b3924;
+        }
+
+
+        /* =========================
+           ANSWER BOX
+        ========================= */
+
+        .answer-box {
+            margin-top: 20px;
+
+            background: #ead7b7;
+
+            border-left: 6px solid #8b572a;
+
+            border-radius: 10px;
+
+            padding: 18px;
+
+            text-align: left;
+
+            min-height: 70px;
+        }
+
+        .answer-title {
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+            color: #5b3924;
+        }
+
+        #answer {
+            color: #3d2b1f;
+
+            line-height: 1.6;
+
+            white-space: pre-wrap;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            nav a {
+                margin-left: 8px;
+
+                font-size: 13px;
+            }
+
+            .title-section h1 {
+                font-size: 26px;
+            }
+
+            .guide-card {
+                padding: 12px;
+            }
+
+            .guide-wrapper {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+            🏺 Heritage IQ
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/artifacts">
+                Artifacts
+            </a>
+
+            <a href="/personalized">
+                Visit
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         TITLE
+    ========================= -->
+
+    <section class="title-section">
+
+        <h1>
+            🤖 AI Heritage Guide
+        </h1>
+
+        <p>
+            Ask questions about Keeladi using text or voice.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+        <div class="guide-card">
+
+
+            <!-- =========================
+                 GUIDE
+            ========================= -->
+
+            <div class="guide-wrapper">
+
+                <!-- STATIC CHARACTER -->
+
+                <img
+                    id="guide-image"
+                    src="{{ url_for('static', filename='guide.png') }}"
+                    alt="AI Heritage Guide"
+                >
+
+
+                <!-- ONLY MOUTH CHANGES -->
+
+                <img
+                    id="mouth-animation"
+                    src="{{ url_for('static', filename='mouth_0.png') }}"
+                    alt=""
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 QUESTION
+            ========================= -->
+
+            <div class="question-box">
+
+                <input
+                    type="text"
+                    id="question"
+                    placeholder="Ask something about Keeladi..."
+                    autocomplete="off"
+                >
+
+
+                <div class="buttons">
+
+
+                    <!-- VOICE INPUT -->
+
+                    <button
+                        id="voiceBtn"
+                        onclick="startListening()"
+                    >
+                        🎤 Voice Question
+                    </button>
+
+
+                    <!-- TEXT ASK -->
+
+                    <button
+                        id="askBtn"
+                        onclick="askAI()"
+                    >
+                        🤖 Ask AI
+                    </button>
+
+
+                    <!-- VOICE OUTPUT -->
+
+                    <button
+                        id="speakBtn"
+                        onclick="speakAnswer()"
+                    >
+                        🔊 Speak Answer
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div id="status">
+
+                Ready to help! 👋
+
+            </div>
+
+
+            <!-- ANSWER -->
+
+            <div class="answer-box">
+
+                <div class="answer-title">
+
+                    🏺 AI Guide Answer
+
+                </div>
+
+                <div id="answer">
+
+                    Ask me something about Keeladi.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+<script>
+
+/* =========================
+   MOUTH ANIMATION
+========================= */
+
+const mouth = document.getElementById("mouth-animation");
+
+const mouthFrames = [
+    "/static/mouth_0.png",
+    "/static/mouth_1.png",
+    "/static/mouth_2.png",
+    "/static/mouth_1.png",
+    "/static/mouth_3.png",
+    "/static/mouth_2.png",
+    "/static/mouth_1.png",
+    "/static/mouth_0.png"
+];
+
+let mouthTimer = null;
+let mouthIndex = 0;
+
+function startMouth() {
+
+    stopMouth();
+
+    mouth.style.display = "block";
+
+    mouthIndex = 0;
+    mouth.src = mouthFrames[mouthIndex];
+
+    mouthTimer = setInterval(function () {
+
+        mouthIndex++;
+
+        if (mouthIndex >= mouthFrames.length) {
+            mouthIndex = 0;
+        }
+
+        mouth.src = mouthFrames[mouthIndex];
+
+    }, 110);
+}
+
+
+function stopMouth() {
+
+    if (mouthTimer !== null) {
+        clearInterval(mouthTimer);
+        mouthTimer = null;
+    }
+
+    mouth.src = "/static/mouth_0.png";
+    mouth.style.display = "none";
+}
+
+
+/* =========================
+   AI VOICE OUTPUT
+========================= */
+
+function speak(text) {
+
+    if (!text || text.trim() === "") {
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const voice = new SpeechSynthesisUtterance(text);
+
+    voice.lang = "en-IN";
+    voice.rate = 0.9;
+    voice.pitch = 1;
+
+    voice.onstart = function () {
+
+        document.getElementById("status").innerText =
+            "🔊 AI Guide is speaking...";
+
+        startMouth();
+    };
+
+    voice.onend = function () {
+
+        document.getElementById("status").innerText =
+            "✅ Finished speaking.";
+
+        stopMouth();
+    };
+
+    voice.onerror = function () {
+
+        document.getElementById("status").innerText =
+            "⚠️ Voice playback stopped.";
+
+        stopMouth();
+    };
+
+    window.speechSynthesis.speak(voice);
+}
+
+
+/* =========================
+   ASK AI
+========================= */
+
+async function askAI() {
+
+    const input = document.getElementById("question");
+    const answer = document.getElementById("answer");
+    const status = document.getElementById("status");
+    const askBtn = document.getElementById("askBtn");
+
+    const text = input.value.trim();
+
+    if (text === "") {
+
+        status.innerText =
+            "❗ Please type a question.";
+
+        return;
+    }
+
+    askBtn.disabled = true;
+
+    status.innerText = "🤖 Thinking...";
+
+    answer.innerText = "Please wait...";
+
+    try {
+
+        const response = await fetch("/ask", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                question: text
+            })
+
+        });
+
+        if (!response.ok) {
+            throw new Error("Server error");
+        }
+
+        const data = await response.json();
+
+        answer.innerText = data.answer;
+
+        status.innerText = "✅ Answer ready.";
+
+        /* Speak answer */
+        speak(data.answer);
+
+    } catch (error) {
+
+        console.error(error);
+
+        answer.innerText =
+            "Sorry, I could not get an answer.";
+
+        status.innerText =
+            "⚠️ Connection problem. Please try again.";
+
+    } finally {
+
+        askBtn.disabled = false;
+    }
+}
+
+
+/* =========================
+   SPEAK ANSWER BUTTON
+========================= */
+
+function speakAnswer() {
+
+    const answer =
+        document.getElementById("answer").innerText;
+
+    if (
+        !answer ||
+        answer === "Ask me something about Keeladi." ||
+        answer === "Please wait..."
+    ) {
+        return;
+    }
+
+    speak(answer);
+}
+
+
+/* =========================
+   SPEECH TO TEXT
+========================= */
+
+const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+let recognition = null;
+
+if (SpeechRecognition) {
+
+    recognition = new SpeechRecognition();
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    recognition.lang = "en-IN";
+
+
+    recognition.onstart = function () {
+
+        const voiceBtn =
+            document.getElementById("voiceBtn");
+
+        voiceBtn.classList.add("listening");
+
+        voiceBtn.innerText = "🎙️ Listening...";
+
+        document.getElementById("status").innerText =
+            "🎙️ I'm listening...";
+    };
+
+
+    recognition.onresult = function (event) {
+
+        const text =
+            event.results[0][0].transcript;
+
+        document.getElementById("question").value = text;
+
+        document.getElementById("status").innerText =
+            "✅ Voice understood.";
+
+        /* Automatically ask AI */
+        askAI();
+    };
+
+
+    recognition.onerror = function (event) {
+
+        console.log("Speech error:", event.error);
+
+        document.getElementById("status").innerText =
+            "⚠️ Voice not understood. Please try again.";
+    };
+
+
+    recognition.onend = function () {
+
+        const voiceBtn =
+            document.getElementById("voiceBtn");
+
+        voiceBtn.classList.remove("listening");
+
+        voiceBtn.innerText = "🎤 Voice Question";
+    };
+
+}
+
+
+/* =========================
+   START VOICE INPUT
+========================= */
+
+function startListening() {
+
+    if (!recognition) {
+
+        document.getElementById("status").innerText =
+            "⚠️ Voice recognition is not supported in this browser.";
+
+        return;
+    }
+
+    try {
+
+        recognition.start();
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+}
+
+
+/* =========================
+   ENTER KEY
+========================= */
+
+document
+    .getElementById("question")
+    .addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            askAI();
+        }
+
+    });
+
+
+/* =========================
+   PAGE CLOSE
+========================= */
+
+window.addEventListener("beforeunload", function () {
+
+    window.speechSynthesis.cancel();
+
+    if (recognition) {
+        recognition.stop();
+    }
+
+    stopMouth();
+
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
