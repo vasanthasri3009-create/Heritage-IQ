@@ -1,0 +1,345 @@
+
+
+Skip to content
+Using Gmail with screen readers
+Conversations
+0% of 5,120 GB used
+Terms · Privacy · Program Policies
+Last account activity: in 6 minutes
+Open in 2 other locations · Details
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage IQ | Keeladi</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f1e5;
+            color: #3d2b1f;
+        }
+
+        header {
+            background: #5b3924;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hero {
+            padding: 70px 8%;
+            text-align: center;
+            background: #ead7b7;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 13px 25px;
+            background: #8b572a;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .section {
+            padding: 45px 8%;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: #3d2b1f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🏺 Heritage IQ</div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Explore</a>
+        <a href="#">AI Assistant</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Discover the History of Keeladi</h1>
+
+    <p>
+        Heritage IQ uses AI to make heritage-site visits
+        more understandable, interactive, personalized and accessible.
+    </p>
+
+<a href="/artifacts" class="btn">Explore Keeladi</a></section>
+
+<section class="section">
+
+<h2>
+    <a href="/chat" style="text-decoration:none; color:inherit;">
+        Explore Heritage with AI
+    </a>
+</h2>
+    <div class="cards">
+
+        <div class="card">
+<h3>
+    <a href="/artifacts" style="text-decoration:none; color:inherit;">
+        🏺 Artifact Explorer
+    </a>
+</h3>
+            <p>
+                Understand artifacts, their period, purpose and
+                historical importance.
+            </p>
+        </div>
+
+        <div class="card">
+<h3>
+    <a href="/personalized" style="text-decoration:none; color:inherit;">
+        🗺️ Personalized Visit
+    </a>
+</h3>
+
+            <p>
+                Get visit suggestions based on your interests
+                and available time.
+            </p>
+        </div>
+
+        <div class="card">
+
+
+<h3>
+    <a href="/chat" style="text-decoration:none; color:inherit;">
+        🗣️ AI Assistant
+    </a>
+</h3>
+            </p>
+        </div>
+
+        <div class="card">
+<h3>
+    <a href="/accessibility" style="text-decoration:none; color:inherit;">
+        ♿ Accessibility
+    </a>
+</h3>
+
+            <p>
+                Experience heritage information in ways suitable
+                for different visitor needs.
+            </p>
+        </div>
+
+        <div class="card">
+<h3>
+    <a href="/crowd" style="text-decoration:none; color:inherit;">
+        👥 Crowd Guidance
+    </a>
+</h3>
+
+            <p>
+                Get guidance that considers crowded areas and
+                visitor movement.
+            </p>
+        </div>
+
+        <div class="card">
+<h3>
+    <a href="/sources" style="text-decoration:none; color:inherit;">
+        📚 Evidence & Sources
+    </a>
+</h3>
+
+            <p>
+                Explore reliable sources connected to historical
+                information.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>Heritage IQ — Discover. Understand. Experience.</p>
+</footer>
+
+
+<!-- Visitor Feedback -->
+<section class="feedback-section">
+    <h2>🏺 Visitor Feedback</h2>
+    <p>Share your Keeladi visit and Heritage IQ experience</p>
+
+    <div class="feedback-card">
+
+        <label>⭐ Rate your experience</label>
+
+        <div class="stars" id="stars">
+            <span onclick="setRating(1)">★</span>
+            <span onclick="setRating(2)">★</span>
+            <span onclick="setRating(3)">★</span>
+            <span onclick="setRating(4)">★</span>
+            <span onclick="setRating(5)">★</span>
+        </div>
+
+        <p id="ratingText">Select your rating</p>
+
+        <label>📝 Your Feedback</label>
+        <textarea id="feedbackText"
+            placeholder="Tell us about your Keeladi visit experience..."></textarea>
+
+        <button type="button" onclick="startFeedbackVoice()">
+            🎤 Give Voice Feedback
+        </button>
+
+        <p id="voiceStatus">Voice feedback is optional</p>
+
+        <button type="button" class="submit-feedback"
+                onclick="submitFeedback()">
+            📤 Submit Feedback
+        </button>
+
+        <div id="feedbackMessage"></div>
+
+    </div>
+
+</section>
+<script>
+let selectedRating = 0;
+
+function setRating(rating) {
+    selectedRating = rating;
+
+    const stars = document.querySelectorAll("#stars span");
+
+    stars.forEach((star, index) => {
+        star.style.color = index < rating ? "#8b572a" : "#ccc";
+    });
+
+    document.getElementById("ratingText").textContent =
+        rating + " / 5 ⭐";
+}
+
+function startFeedbackVoice() {
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        document.getElementById("voiceStatus").textContent =
+            "Voice input is not supported in this browser.";
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang = "en-IN";
+    recognition.interimResults = false;
+
+    document.getElementById("voiceStatus").textContent =
+        "🎤 Listening... Speak your feedback.";
+
+    recognition.start();
+
+    recognition.onresult = function(event) {
+        const voiceText = event.results[0][0].transcript;
+
+        document.getElementById("feedbackText").value = voiceText;
+
+        document.getElementById("voiceStatus").textContent =
+            "✅ Voice feedback added.";
+    };
+
+    recognition.onerror = function() {
+        document.getElementById("voiceStatus").textContent =
+            "❌ Could not hear your voice. Try again.";
+    };
+}
+
+function submitFeedback() {
+    const feedback =
+        document.getElementById("feedbackText").value.trim();
+
+    const message =
+        document.getElementById("feedbackMessage");
+
+    if (selectedRating === 0) {
+        message.textContent = "⭐ Please select a rating.";
+        return;
+    }
+
+    if (feedback === "") {
+        message.textContent = "📝 Please enter your feedback.";
+        return;
+    }
+
+    message.textContent =
+        "✅ Thank you! Your Keeladi visit feedback has been received.";
+
+    document.getElementById("feedbackText").value = "";
+}
+</script>
+
+</body>
+</html>
+index.html
+Displaying index.html.
