@@ -1,0 +1,605 @@
+
+
+Skip to content
+Using Gmail with screen readers
+Conversations
+0% of 5,120 GB used
+Terms · Privacy · Program Policies
+Last account activity: in 5 minutes
+Details
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Heritage IQ - Personalized Visit</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5efe6;
+            margin: 0;
+        }
+
+        header {
+            background: #5d4037;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .hero {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            margin-bottom: 25px;
+        }
+
+        .hero h2 {
+            color: #5d4037;
+            font-size: 28px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #5d4037;
+        }
+
+        select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #aaa;
+            font-size: 17px;
+        }
+
+        button {
+            margin-top: 22px;
+            padding: 15px 25px;
+            background: #5d4037;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #795548;
+        }
+
+        #plan {
+            margin-top: 25px;
+        }
+
+        .plan-header {
+            background: #5d4037;
+            color: white;
+            padding: 20px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .plan-header h2 {
+            margin: 0;
+        }
+
+        .visit-card {
+            background: white;
+            padding: 22px;
+            margin-top: 12px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+        }
+
+        .visit-card h3 {
+            color: #5d4037;
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .visit-card p {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #fff8e1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 4px;
+            font-size: 15px;
+        }
+
+        .route {
+            background: #e8f5e9;
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .tip {
+            background: #fff3e0;
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .demo-note {
+            background: #eeeeee;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 15px;
+            }
+
+            .hero,
+            .form-card {
+                padding: 20px;
+            }
+
+            nav a {
+                font-size: 17px;
+                margin: 0 5px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>🏺 Heritage IQ</h1>
+
+    <div style="margin-top:8px;">
+        🗺️ Personalized Visit
+    </div>
+
+    <nav>
+
+        <a href="/">🏠 Home</a>
+
+        <a href="/artifacts">🏺 Artifacts</a>
+
+        <a href="/chat">🤖 AI Guide</a>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="hero">
+
+        <h2>🗺️ Create Your Personalized Visit</h2>
+
+        <p>
+            Choose your interest and available time.
+            Heritage IQ will create a simple visit
+            route with areas, landmarks and things to explore.
+        </p>
+
+    </div>
+
+
+    <div class="form-card">
+
+        <label>
+            🏺 What are you interested in?
+        </label>
+
+        <select id="interest">
+
+            <option value="artifacts">
+                🏺 Artifacts & Archaeological Findings
+            </option>
+
+            <option value="history">
+                📖 History & Ancient Life
+            </option>
+
+            <option value="architecture">
+                🧱 Architecture & Structures
+            </option>
+
+        </select>
+
+
+        <label>
+            ⏱️ How much time do you have?
+        </label>
+
+        <select id="time">
+
+            <option value="30">30 Minutes</option>
+
+            <option value="60">1 Hour</option>
+
+            <option value="120">2 Hours</option>
+
+        </select>
+
+
+        <button onclick="createPlan()">
+
+            🗺️ Create My Visit Plan
+
+        </button>
+
+    </div>
+
+
+    <div id="plan"></div>
+
+
+</div>
+
+
+<footer>
+
+    🏺 Heritage IQ | Personalized Heritage Experience
+
+</footer>
+
+
+<script>
+
+
+function createPlan() {
+
+    const interest =
+        document.getElementById("interest").value;
+
+    const time =
+        document.getElementById("time").value;
+
+    let content = "";
+
+
+    if (interest === "artifacts") {
+
+        content = `
+
+        <div class="plan-header">
+
+            <h2>🏺 Artifact Discovery Route</h2>
+
+            <p>Recommended time: ${time} minutes</p>
+
+        </div>
+
+
+        <div class="visit-card">
+
+            <h3>📍 Area 1 — Archaeological Findings Zone</h3>
+
+            <span class="tag">🏺 Pottery</span>
+
+            <span class="tag">⚒️ Iron Objects</span>
+
+            <p>
+
+                Explore archaeological findings that can
+                help researchers understand the daily life,
+                technology and activities of ancient communities.
+
+            </p>
+
+            <p>
+
+                <b>🧭 Landmark:</b>
+                Main Interpretation / Visitor Information Area
+
+            </p>
+
+        </div>
+
+
+        <div class="visit-card">
+
+            <h3>📍 Area 2 — Pottery & Craft Evidence</h3>
+
+            <span class="tag">🏺 Pottery</span>
+
+            <span class="tag">🛠️ Craft Evidence</span>
+
+            <p>
+
+                Learn how pottery and craft-related evidence
+                can provide information about technology,
+                production and everyday activities.
+
+            </p>
+
+            <p>
+
+                <b>🧭 Landmark:</b>
+                Artifact Display Area
+
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+
+    else if (interest === "history") {
+
+        content = `
+
+        <div class="plan-header">
+
+            <h2>📖 Ancient Life Route</h2>
+
+            <p>Recommended time: ${time} minutes</p>
+
+        </div>
+
+
+        <div class="visit-card">
+
+            <h3>📍 Area 1 — Heritage Interpretation Zone</h3>
+
+            <span class="tag">📖 History</span>
+
+            <span class="tag">👥 Ancient Life</span>
+
+            <p>
+
+                Begin with an overview of Keeladi and learn
+                how archaeological evidence helps researchers
+                study ancient settlements and everyday life.
+
+            </p>
+
+            <p>
+
+                <b>🧭 Landmark:</b>
+                Visitor Information / Interpretation Area
+
+            </p>
+
+        </div>
+
+
+        <div class="visit-card">
+
+            <h3>📍 Area 2 — Everyday Life Evidence</h3>
+
+            <span class="tag">🏺 Pottery</span>
+
+            <span class="tag">⚒️ Tools</span>
+
+            <p>
+
+                Explore evidence connected with daily activities,
+                crafts, tools and technology.
+
+            </p>
+
+            <p>
+
+                <b>🧭 Landmark:</b>
+                Archaeological Exhibition Area
+
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+
+    else {
+
+        content = `
+
+        <div class="plan-header">
+
+            <h2>🧱 Structure & Settlement Route</h2>
+
+            <p>Recommended time: ${time} minutes</p>
+
+        </div>
+
+
+        <div class="visit-card">
+
+            <h3>📍 Area 1 — Structural Evidence Zone</h3>
+
+            <span class="tag">🧱 Brick Structures</span>
+
+            <span class="tag">🏘️ Settlement Evidence</span>
+
+            <p>
+
+                Explore structural remains and learn how
+                archaeological evidence can reveal information
+                about ancient construction and settlements.
+
+            </p>
+
+            <p>
+
+                <b>🧭 Landmark:</b>
+                Structural Remains / Interpretation Area
+
+            </p>
+
+        </div>
+
+
+        <div class="visit-card">
+
+            <h3>📍 Area 2 — Water Management Evidence</h3>
+
+            <span class="tag">🕳️ Ring Well</span>
+
+            <span class="tag">💧 Water Management</span>
+
+            <p>
+
+                Learn how archaeological features such as
+                ring wells can help researchers study
+                water management and settlement practices.
+
+            </p>
+
+            <p>
+
+                <b>🧭 Landmark:</b>
+                Archaeological Feature Display Area
+
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+
+    content += `
+
+    <div class="visit-card">
+
+        <h3>🚶 Suggested Visit Sequence</h3>
+
+        <div class="route">
+
+            🏁 Start → 📍 Interpretation Area
+            → 🏺 Findings Area
+            → 📖 Evidence Area
+            → 🏁 Finish
+
+        </div>
+
+    </div>
+
+
+    <div class="visit-card">
+
+        <h3>💡 Visitor Tip</h3>
+
+        <div class="tip">
+
+            Take time to read the information panels and
+            compare the archaeological evidence with the
+            explanations provided by the Heritage IQ AI Guide.
+
+        </div>
+
+    </div>
+
+
+    <div class="visit-card">
+
+        <h3>📍 Landmark Information</h3>
+
+        <p>
+
+            The landmarks shown here are used as
+            <b>illustrative visit-planning points</b>.
+            They are not presented as exact GPS coordinates
+            or an official site map.
+
+        </p>
+
+        <div class="demo-note">
+
+            ℹ️ Demo / Illustrative Visit Plan —
+            exact visitor routes and live site coordinates
+            should be connected to verified official
+            site data in a future version.
+
+        </div>
+
+    </div>
+
+    `;
+
+
+    document.getElementById("plan").innerHTML = content;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+personalized.html
+Displaying personalized.html.
